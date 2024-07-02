@@ -2,7 +2,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
-
+import connectDb from "@/service/mongo";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Inter({ subsets: ["latin"], variable: "--font-poppins" });
 
@@ -11,7 +11,9 @@ export const metadata = {
   description: "Explore || Learn || Build || Share",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+ await connectDb();
+
   return (
     <html lang="en">
       <body
